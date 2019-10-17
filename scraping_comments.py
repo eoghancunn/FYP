@@ -27,7 +27,7 @@ def get_routes(crag_id) :
         td = tr.find_all('td')
         info = [tr.text for tr in td] 
         info.extend([tr.get("data-id"),tr.nextSibling])
-        rows.append(info + [''] * (7 - len(info)))
+        rows.append(info + [''] * (8 - len(info)))
 
     df = pd.DataFrame(rows[2:], columns=["index", "name", "something1", "something2", "grade", "route_id", "ascents", "extra"])
 
@@ -67,8 +67,7 @@ def get_route_ascents(route_id) :
     # beautiful soup makes it easy to find the table and store all of it rows
     table = logs.find('table')
     if table:
-        table_rows = table.find_all('tr', attrs={'class':''})
-            
+        table_rows = table.select('tr[class^="entry_"]')
         ascents = []
         
         for tr in table_rows:
@@ -80,7 +79,6 @@ def get_route_ascents(route_id) :
             climber_id = re.sub(r'.*=', r'', link)
             info.append(climber_id)
             ascents.append(info)
-            
             
         # we can convert the ascents data we've just collected into a dataframe
         df = pd.DataFrame(ascents, columns=["name", "date", "style", "comment", "climber_id"])
@@ -121,16 +119,18 @@ def get_comments(route_id):
     
     logs, feedbacks = get_route_ascents(route_id)
 
+    print(len(logs), len(feedbacks))
     output_dir = "comments/"
 
     for log in logs: 
-        outfile_name = re.sub(" ", "_", log['route_info']+"_"+log['climber_id']+".json")
+        outfile_name = re.sub("[ //]", "_", log['route_info']+"_"+log['climber_id']+".json")
 
+        print(outfile_name)
         with open(output_dir+outfile_name, "w") as outfile:
             json.dump(log, outfile)
 
     for feedback in feedbacks: 
-        outfile_name = re.sub(" ", "_", feedback['route_info']+"_"+feedback['climber_id']+".json")
+        outfile_name = re.sub("[ //]", "_", feedback['route_info']+"_"+feedback['climber_id']+".json")
 
         if feedback['beta'] == "1": 
             output_dir = "feedback_w_beta/"
@@ -141,7 +141,11 @@ def get_comments(route_id):
             json.dump(feedback, outfile)
 
 
-stanage_popular = get_routes(104)
-for route_id in stanage_popular['route_id']:
-    get_comments(route_id)
+crag_ids = [17029]
+
+for crag_id in crag_ids:
+    print("scraping routes for {}".format(crag_id))
+    crag_df = get_routes(crag_id)
+    for route_id in crag_df['route_id']:
+        get_comments(route_id)
 

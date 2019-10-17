@@ -15,7 +15,10 @@ f = open(beta_samples, "a+")
 for log in files:   
     with open(log) as json_file:
         data = json.load(json_file)
-        beta = data['comment']    
-    f.write(beta+"\n\n")
+        beta = ""
+        if 'label' in data:
+            if data['label'] == '1':
+                beta = data['comment']+"\n\n"
+    f.write(beta)
     
 f.close()
