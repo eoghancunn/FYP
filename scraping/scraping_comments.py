@@ -141,8 +141,8 @@ def get_comments(route_id):
         with open(output_dir+outfile_name, "w") as outfile:
             json.dump(feedback, outfile)
 
-
-crag_ids = [17029]
+# UKC location ids for all the crags 
+crag_ids = [17029,747,105,99,2337,22,403,104,824,94,88,101,199,87,19]
 
 for crag_id in crag_ids:
     print("scraping routes for {}".format(crag_id))
