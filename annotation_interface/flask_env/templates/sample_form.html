@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Beta Annotation</title>
+		<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="main-block">
+			<h1>In the case of each of the following comments, state if the comment contains beta: </h1>
+			<hr>	
+			<fieldset>
+				<legend>Beta</legend>
+				<p>Advice on how to successfully complete (or protect) a particular climbing route, boulder problem or crux sequence. Guide book infromation/description should not be considered beta.</p>
+			</fieldset>
+			<hr>
+			<div class="sub-block">
+				<h2>Comment:</h2>
+				<p>"{{ comment }}"</p>
+			</div>
+			<hr>
+			<form action="/<comment_text>" method="POST">
+				<div class="container">
+					<input type="radio" value="1" id="yes" name="beta_label" />
+					<label for="yes" class="radio">Yes</label>
+					<input type="radio" value="0" id="no" name="beta_label" />
+					<label for="no" class="radio">No</label>
+				</div>
+				<hr>
+				<button type="submit">
+				<label for="submit">Submit</label>
+				</button>
+			</form>
+			<hr>
+			<a href="/logout/">Logout</a>
+		</div>
+	</body>
+</html>

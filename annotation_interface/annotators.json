@@ -1,0 +1,10 @@
+[{ "name" : "madeline_wilkes", "alias" : "annotator_1" },
+{ "name" : "martin_dunne", "alias" : "annotator_2"},
+{ "name" : "jonah_byrne", "alias" : "annotator_3"},
+{ "name" : "sean_fortune", "alias" : "annotator_4"},
+{ "name" : "peter_buckley", "alias" : "annotator_5"},
+{ "name" : "finn_mcwilliams", "alias" : "annotator_6"},
+{ "name" : "ciaran_curran", "alias" : "annotator_7"},
+{ "name" : "james_mulhall", "alias" : "annotator_8"},
+{ "name" : "cormac_campbell", "alias" : "annotator_9"},
+{ "name" : "adam_doran", "alias" : "annotator_10"}]
