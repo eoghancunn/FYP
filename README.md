@@ -14,7 +14,7 @@ The code for the annotation interface flask app is provided in the annotation_in
 
 ACTIVE LEARNING: 
 All the code required for active learning implementation and experimentation is provided in active_learning_utils.py. 
-Our active learning experiments are in active_learning_exp.py.
+Our active learning experiments are in active_learning_exp.py. The script used to query our active learning samples is active_learning_implement.py
 
 EVALUATION:
 Each of the notebooks for evaluation is provided in the evaluations directory. 
